@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IdeaNest | Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #F9FAFB;
+      color: #111827;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #4F46E5;
+    }
+
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: #111827;
+      font-weight: 500;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, #4F46E5, #06B6D4);
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      max-width: 600px;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero button {
+      background-color: white;
+      color: #4F46E5;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .hero button:hover {
+      background-color: #f0f0f0;
+    }
+
+    .section {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #4F46E5;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    footer {
+      background-color: #1f2937;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">IdeaNest</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#how">How It Works</a>
+      <a href="#join">Join</a>
+      <a href="#login">Login</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Empowering Student Innovation</h1>
+    <p>Connect with mentors, get funded, and bring your idea to life through IdeaNest.</p>
+    <button>Get Started</button>
+  </section>
+
+  <section class="section" id="how">
+    <h2>How It Works</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Submit Your Idea</h3>
+        <p>Tell us what you're working on and how it will make an impact.</p>
+      </div>
+      <div class="card">
+        <h3>Find Support</h3>
+        <p>Get matched with mentors, donors, and industry experts.</p>
+      </div>
+      <div class="card">
+        <h3>Grow & Launch</h3>
+        <p>Receive funding and mentorship to bring your vision to life.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="join">
+    <h2>Who Can Join?</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Students</h3>
+        <p>Submit ideas, get mentored, and secure funding.</p>
+      </div>
+      <div class="card">
+        <h3>Mentors</h3>
+        <p>Guide student innovators and share your expertise.</p>
+      </div>
+      <div class="card">
+        <h3>Donors</h3>
+        <p>Fund promising ideas and invest in the future.</p>
+      </div>
+      <div class="card">
+        <h3>Educators</h3>
+        <p>Support students through knowledge and experience.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 IdeaNest. All rights reserved. | Contact us | Privacy Policy
+  </footer>
+</body>
+
+</html>
