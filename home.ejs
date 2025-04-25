@@ -10,6 +10,131 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
+    main {
+      position: relative;
+    }
+
+    .slideshow-container {
+      position: absolute;
+      top: 100px;
+      right: 20px;
+      width: 300px;
+      max-width: 100%;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      z-index: 10;
+    }
+
+    .slideshow {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-slide {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .project-slide.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .project-slide h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #4f46e5;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-slide p {
+      font-size: 0.9rem;
+      color: #374151;
+      margin-bottom: 0.75rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .project-slide .rating {
+      font-size: 0.85rem;
+      color: #f59e0b;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-slide a {
+      font-size: 0.9rem;
+      color: #06b6d4;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .project-slide a:hover {
+      text-decoration: underline;
+    }
+
+    .slideshow-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+
+    .nav-arrow {
+      background: #4f46e5;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.2s;
+    }
+
+    .nav-arrow:hover {
+      background: #4338ca;
+    }
+
+    .nav-arrow:disabled {
+      background: #d1d5db;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 768px) {
+      .slideshow-container {
+        position: static;
+        width: 100%;
+        margin: 1rem auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .slideshow-container {
+        padding: 0.75rem;
+      }
+
+      .project-slide h3 {
+        font-size: 1.1rem;
+      }
+
+      .project-slide p {
+        font-size: 0.85rem;
+      }
+    }
+
     .message {
       margin: 0.5rem 0;
       padding: 0.75rem;
@@ -32,6 +157,7 @@
       color: #111827;
       margin-right: auto;
     }
+
     /* Chatbot Styles */
     .chatbot-wrapper {
       position: fixed;
@@ -89,6 +215,7 @@
       border: 1px solid #ddd;
       border-radius: 8px;
     }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -443,16 +570,42 @@
     </nav>
   </header>
   <main>
+    <div class="slideshow-container" style="width: 680px; margin: 0px; height: 160px;" >
+      <div class="slideshow">
+        <div class="project-slide active">
+          <h3>EcoTrack</h3>
+          <p>An app to monitor carbon footprints using IoT and AI for sustainable living.</p>
+        </div>
+        <div class="project-slide">
+          <h3>HealthBridge</h3>
+          <p>Telemedicine platform connecting rural patients with specialists.</p>
+        </div>
+        <div class="project-slide">
+          <h3>LearnVR</h3>
+          <p>Virtual reality tool for immersive science education in schools.</p>
+        </div>
+      </div>
+      <div class="slideshow-nav">
+        <button class="nav-arrow prev" onclick="changeSlide(-1)">←</button>
+        <button class="nav-arrow next" onclick="changeSlide(1)">→</button>
+      </div>
+    </div>
     <section class="hero" aria-label="Hero section">
       <div class="hero-image">
-        <h1>Empowering Student Innovation</h1>
-        <p>Connect with mentors, get funded, and bring your idea to life through IdeaNest.</p>
+        <!-- <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p> -->
+        <h1 style="font-weight: 700;">Empowering Student Innovation</h1>
+        <p style="font-weight: 500;">Connect with mentors, get funded, and bring your idea to life through IdeaNest.</p>
         <button class="btn btn-primary">Get Started</button>
         <div class="illustration" aria-hidden="true">
           <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="100" cy="100" r="80" fill="url(#grad1)" opacity="0.3" />
-            <path d="M60 120 L100 80 L140 120" stroke="#06B6D4" stroke-width="8" stroke-linecap="round" />
-            <path d="M100 80 V140" stroke="#4F46E5" stroke-width="8" stroke-linecap="round" />
+            <circle cx="100" cy="100" r="80" fill="url(#grad1)" opacity="0.3"/>
+            <path d="M60 120 L100 80 L140 120" stroke="#06B6D4" stroke-width="8" stroke-linecap="round"/>
+            <path d="M100 80 V140" stroke="#4F46E5" stroke-width="8" stroke-linecap="round"/>
             <defs>
               <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
@@ -462,14 +615,18 @@
           </svg>
         </div>
       </div>
-
       <div class="hero-content">
+        <!-- <p></p>
+        <p></p>
+        <p></p>
+        <p></p> -->
+
         <h2>Why IdeaNest?</h2>
-        <p>Join a vibant community of students, mentors, donors, and educators dedicated to transforming education
-          through innovation.</p>
-        <a href="#join" class="btn btn-secondary">Join Now</a>
+        <p>Join a vibrant community of students, mentors, donors, and educators dedicated to transforming education through innovation.</p>
+        <a href="signup.html" class="btn btn-secondary">Join Now</a>
       </div>
     </section>
+ 
     <section class="section" id="how">
       <h2>How It Works</h2>
 
@@ -508,17 +665,34 @@
         </a>
 
         <!-- Grow & Launch Card -->
-        <div class="card"
-          style="padding: 20px; border-radius: 12px; background-color: #ffffff; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05); transition: transform 0.2s; text-align: center;">
-          <h3 style="margin-bottom: 10px; font-size: 1.25rem; font-weight: 700; color: #111827;">Grow & Launch</h3>
-          <p style="margin-bottom: 20px; font-size: 0.95rem; color: #374151;">
-            Receive funding and mentorship to bring your vision to life.
-          </p>
-          <button
-            style="background-color: #4f46e5; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2); font-size: 0.95rem; font-weight: 600; transition: background-color 0.2s;">
-            Get Started
-          </button>
-        </div>
+        <a href="/hackdash" style="text-decoration: none;">
+          <div class="card"
+            style="padding: 20px; border-radius: 12px; background-color: #ffffff; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05); transition: transform 0.2s; text-align: center;">
+            <h3 style="margin-bottom: 10px; font-size: 1.25rem; font-weight: 700; color: #111827;">Hack & Build</h3>
+            <p style="margin-bottom: 20px; font-size: 0.95rem; color: #374151;">
+              Join hackathons, connect with innovators, and build solutions.
+            </p>
+            <button
+              style="background-color: #4f46e5; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2); font-size: 0.95rem; font-weight: 600; transition: background-color 0.2s;">
+              Get Started
+            </button>
+          </div>
+        </a>
+        <a href="/explore" style="text-decoration: none;">
+          <div class="card"
+            style="padding: 20px; border-radius: 12px; background-color: #ffffff; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05); transition: transform 0.2s; text-align: center;">
+            <h3 style="margin-bottom: 10px; font-size: 1.25rem; font-weight: 700; color: #111827;">Explore Ideas!</h3>
+            <p style="margin-bottom: 20px; font-size: 0.95rem; color: #374151;">
+              Support student ideas that shape the future            </p>
+            <button
+              style="background-color: #4f46e5; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2); font-size: 0.95rem; font-weight: 600; transition: background-color 0.2s;">
+              Get Started
+            </button>
+          </div>
+        </a>
+        
+        
+      </div>
 
       </div>
 
@@ -564,11 +738,15 @@
     <h2>Need Help?</h2>
     <p>Got questions? Send us a message on WhatsApp directly from here.</p>
     <div class="card" style="max-width: 500px; margin: 2rem auto;">
-      <textarea id="userMessage" rows="4" style="width: 100%; padding: 1rem; border-radius: 0.5rem; border: 1px solid #ccc;" placeholder="Type your message here..."></textarea>
-      <button id="whatsappBtn" style="margin-top: 1rem; padding: 0.6rem 1.2rem; background-color: #4f46e5; color: white; border: none; border-radius: 0.4rem; cursor: pointer;">Send on WhatsApp</button>
+      <textarea id="userMessage" rows="4"
+        style="width: 100%; padding: 1rem; border-radius: 0.5rem; border: 1px solid #ccc;"
+        placeholder="Type your message here..."></textarea>
+      <button id="whatsappBtn"
+        style="margin-top: 1rem; padding: 0.6rem 1.2rem; background-color: #4f46e5; color: white; border: none; border-radius: 0.4rem; cursor: pointer;">Send
+        on WhatsApp</button>
     </div>
   </section>
-  
+
   <footer>
     ©️ 2025 IdeaNest. All rights reserved. | <a href="/contact">Contact us</a> | <a href="/privacy">Privacy Policy</a>
   </footer>
@@ -579,8 +757,8 @@
 
     let chatHistory = [{
       role: "system",
-  content: "I am IdeaNest Assistant, helping students submit ideas, connect with mentors, find funding, and track progress. Guide users on idea submission, mentor registration, SDG tagging, and platform features. Keep responses clear, concise, and action-oriented. Direct users to appropriate resources and APIs as needed."
-}, {
+      content: "I am IdeaNest Assistant, helping students submit ideas, connect with mentors, find funding, and track progress. Guide users on idea submission, mentor registration, SDG tagging, and platform features. Keep responses clear, concise, and action-oriented. Direct users to appropriate resources and APIs as needed."
+    }, {
       role: "user",
       content: "Provide clear, concise, and actionable responses to users about the platform's features, guiding them in submitting ideas, connecting with mentors, finding funding opportunities, and utilizing the SDG tagging system. Ensure responses align with Sustainable Development Goals (SDGs), suggest relevant tags, and direct users to appropriate platform actions (e.g., submitting ideas, mentor registration). If a request is unclear, ask for clarification to ensure accurate assistance."
     }];
@@ -634,25 +812,25 @@
     }
 
     $("#whatsappBtn").click(function () {
-    const userMessage = $("#userMessage").val().trim();
-    if (userMessage === "") {
-      alert("Please type a message before sending.");
-      return;
-    }
+      const userMessage = $("#userMessage").val().trim();
+      if (userMessage === "") {
+        alert("Please type a message before sending.");
+        return;
+      }
 
-    $.ajax({
-      url: "/sendWhatsApp",
-      method: "POST",
-      data: { userMessage },
-      success: function (response) {
-        alert("✅ Message sent successfully!");
-        $("#userMessage").val("");
-      },
-      error: function () {
-        alert("❌ Failed to send message.");
-      },
+      $.ajax({
+        url: "/sendWhatsApp",
+        method: "POST",
+        data: { userMessage },
+        success: function (response) {
+          alert("✅ Message sent successfully!");
+          $("#userMessage").val("");
+        },
+        error: function () {
+          alert("❌ Failed to send message.");
+        },
+      });
     });
-  });
   </script>
 </body>
 
