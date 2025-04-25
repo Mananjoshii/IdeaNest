@@ -59,14 +59,33 @@ app.get("/", (req, res) => {
 app.get("/login", (req, res) => {
   res.render("login.ejs");
 });
+
+app.get("/hackdash", (req, res) => {
+  res.render("hackdash.ejs");
+});
+
 app.get("/profile", (req, res) => {
   res.render("profile.ejs");
 });
 app.get("/explorementor", (req, res) => {
   res.render("explorementor.ejs");
 });
+
+app.get("/video-call", (req, res) => {
+  res.render("video-call.ejs");
+});
+
+app.get("/explore", (req, res) => {
+  res.render("explore.ejs");
+});
+
+
+
 app.get("/aboutus", (req, res) => {
   res.render("aboutus.ejs");
+});
+app.get("/submit", (req, res) => {
+  res.render("submit.ejs");
 });
 
 app.get("/register", (req, res) => {
