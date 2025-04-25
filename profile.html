@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | IdeaNest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">IdeaNest</div>
+        <nav>
+            <a href="#" class="active">Home</a>
+            <a href="#">Explore</a>
+            <a href="#">Submit Idea</a>
+            <a href="#">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container">
+            <div class="profile-card card">
+                <img src="https://i.imgur.com/4ZQZxVF.png" alt="Profile Picture" class="profile-img">
+                <div class="profile-info">
+                    <h2>Jane Doe</h2>
+                    <p class="role">Student | Computer Science</p>
+                    <p class="bio">Passionate about solving real-world problems through AI and education.</p>
+                    <p class="contact">📧 jane.doe@example.com<br>📍 Bengaluru, India</p>
+                    <button class="btn btn-primary edit-btn">Edit Profile</button>
+                </div>
+            </div>
+
+            <div class="activities">
+                <h3>Submitted Ideas</h3>
+                <div class="cards">
+                    <div class="card idea-card">
+                        <h4>AI Tutor for Rural Students</h4>
+                        <p>Status: ⏳ Pending Review</p>
+                    </div>
+                    <div class="card idea-card">
+                        <h4>Eco-Lab Starter Kit</h4>
+                        <p>Status: ✅ Funded</p>
+                    </div>
+                </div>
+
+                <h3>Supported Ideas</h3>
+                <div class="cards">
+                    <div class="card idea-card">
+                        <h4>Blockchain Voting App</h4>
+                        <p>Role: 🧑‍🏫 Mentor</p>
+                    </div>
+                    <div class="card idea-card">
+                        <h4>Smart Irrigation</h4>
+                        <p>Role: 💸 Donor</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="modal" id="edit-profile-modal">
+            <div class="modal-content card">
+                <h2>Edit Profile</h2>
+                <form>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" value="Jane Doe">
+                    <label for="role">Role</label>
+                    <input type="text" id="role" value="Student | Computer Science">
+                    <label for="bio">Bio</label>
+                    <textarea id="bio">Passionate about solving real-world problems through AI and education.</textarea>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" value="jane.doe@example.com">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" value="Bengaluru, India">
+                    <button type="submit" class="btn btn-primary save-btn">Save</button>
+                    <button type="button" class="btn btn-secondary close-btn">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 IdeaNest. All rights reserved. <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        const editBtn = document.querySelector('.edit-btn');
+        const modal = document.getElementById('edit-profile-modal');
+        const closeBtn = document.querySelector('.close-btn');
+        editBtn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
