@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mentor-Mentee Video Call interface for IdeaNest, connecting students and mentors seamlessly.">
+    <title>Mentor-Mentee Video Call | IdeaNest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f8fb;
+            color: #111827;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #0066ff, #4d94ff);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .header-subtitle {
+            font-size: 0.9rem;
+            color: #e0e7ff;
+            font-weight: 400;
+        }
+
+        nav a {
+            margin-left: 1.5rem;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #e0e7ff;
+        }
+
+        nav a.active {
+            color: #e0e7ff;
+            font-weight: 700;
+        }
+
+        main {
+            flex: 1;
+            padding-top: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-box {
+            flex: 1;
+            max-width: 600px;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 2px solid #0066ff;
+            background: #000;
+        }
+
+        .video-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-label {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+
+        .control-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .btn-video, .btn-audio {
+            background-color: #0066ff;
+            color: #fff;
+        }
+
+        .btn-video:hover, .btn-audio:hover {
+            background-color: #004ccc;
+            transform: translateY(-2px);
+        }
+
+        .btn-leave {
+            background-color: #ff4444;
+            color: #fff;
+        }
+
+        .btn-leave:hover {
+            background-color: #cc3333;
+            transform: translateY(-2px);
+        }
+
+        .btn-off {
+            background-color: #6b7280;
+        }
+
+        .btn-off:hover {
+            background-color: #4b5563;
+        }
+
+        @media (max-width: 768px) {
+            .video-container {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .video-box {
+                max-width: 100%;
+                height: 40vh;
+            }
+
+            .header {
+                padding: 0.75rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .header-subtitle {
+                font-size: 0.8rem;
+            }
+
+            nav a {
+                margin-left: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .controls {
+                padding: 0.75rem;
+                gap: 0.5rem;
+            }
+
+            .control-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .logo-container {
+                align-items: center;
+            }
+
+            .logo {
+                font-size: 1.25rem;
+            }
+
+            .header-subtitle {
+                font-size: 0.75rem;
+            }
+
+            nav a {
+                margin: 0 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            .video-box {
+                height: 30vh;
+            }
+
+            .control-btn {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo">IdeaNest</div>
+            <div class="header-subtitle">Mentor-Mentee Video Call</div>
+        </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Explore</a>
+            <a href="#">Submit Idea</a>
+            <a href="#">Profile</a>
+            <a href="#" class="active">Video Call</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="video-container">
+            <div class="video-box">
+                <video id="localVideo" autoplay muted playsinline></video>
+                <span class="video-label">You</span>
+            </div>
+            <div class="video-box">
+                <video id="remoteVideo" autoplay playsinline></video>
+                <span class="video-label">Mentor/Mentee</span>
+            </div>
+        </div>
+    </main>
+
+    <div class="controls">
+        <button id="videoToggle" class="control-btn btn-video">Video On</button>
+        <button id="audioToggle" class="control-btn btn-audio">Audio On</button>
+        <button id="leaveCall" class="control-btn btn-leave">Leave Call</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.min.js"></script>
+    <script>
+        const socket = io('https://your-signaling-server.com'); // Replace with your signaling server URL
+        let localStream, peerConnection;
+        const localVideo = document.getElementById('localVideo');
+        const remoteVideo = document.getElementById('remoteVideo');
+        const videoToggle = document.getElementById('videoToggle');
+        const audioToggle = document.getElementById('audioToggle');
+        const leaveCall = document.getElementById('leaveCall');
+
+        const configuration = {
+            iceServers: [
+                { urls: 'stun:stun.l.google.com:19302' }
+            ]
+        };
+
+        async function startCall() {
+            try {
+                localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                localVideo.srcObject = localStream;
+
+                peerConnection = new RTCPeerConnection(configuration);
+                localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
+
+                peerConnection.ontrack = event => {
+                    remoteVideo.srcObject = event.streams[0];
+                };
+
+                peerConnection.onicecandidate = event => {
+                    if (event.candidate) {
+                        socket.emit('ice-candidate', event.candidate);
+                    }
+                };
+
+                const offer = await peerConnection.createOffer();
+                await peerConnection.setLocalDescription(offer);
+                socket.emit('offer', offer);
+
+            } catch (error) {
+                console.error('Error starting call:', error);
+            }
+        }
+
+        socket.on('offer', async (offer) => {
+            if (!peerConnection) {
+                peerConnection = new RTCPeerConnection(configuration);
+                localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
+                peerConnection.ontrack = event => {
+                    remoteVideo.srcObject = event.streams[0];
+                };
+                peerConnection.onicecandidate = event => {
+                    if (event.candidate) {
+                        socket.emit('ice-candidate', event.candidate);
+                    }
+                };
+            }
+
+            await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
+            const answer = await peerConnection.createAnswer();
+            await peerConnection.setLocalDescription(answer);
+            socket.emit('answer', answer);
+        });
+
+        socket.on('answer', async (answer) => {
+            await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
+        });
+
+        socket.on('ice-candidate', async (candidate) => {
+            try {
+                await peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
+            } catch (error) {
+                console.error('Error adding ICE candidate:', error);
+            }
+        });
+
+        videoToggle.addEventListener('click', () => {
+            const videoTrack = localStream.getVideoTracks()[0];
+            videoTrack.enabled = !videoTrack.enabled;
+            videoToggle.textContent = videoTrack.enabled ? 'Video On' : 'Video Off';
+            videoToggle.classList.toggle('btn-off', !videoTrack.enabled);
+        });
+
+        audioToggle.addEventListener('click', () => {
+            const audioTrack = localStream.getAudioTracks()[0];
+            audioTrack.enabled = !audioTrack.enabled;
+            audioToggle.textContent = audioTrack.enabled ? 'Audio On' : 'Audio Off';
+            audioToggle.classList.toggle('btn-off', !audioTrack.enabled);
+        });
+
+        leaveCall.addEventListener('click', () => {
+            if (peerConnection) {
+                peerConnection.close();
+            }
+            if (localStream) {
+                localStream.getTracks().forEach(track => track.stop());
+            }
+            socket.disconnect();
+            window.location.href = '/'; // Redirect to home or another page
+        });
+
+        // Start call automatically on page load
+        window.onload = startCall;
+
+        // Join a room (assuming a room ID is passed, e.g., via URL or session)
+        const roomId = 'mentor-mentee-room'; // Replace with dynamic room ID
+        socket.emit('join-room', roomId);
+    </script>
+</body>
+</html>
