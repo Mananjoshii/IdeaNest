@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | IdeaNest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<style>
+    * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafb;
+    color: #111827;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Styling */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+nav a {
+    margin-left: 2rem;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: #e0e7ff;
+}
+
+nav a.active {
+    color: #e0e7ff;
+    font-weight: 700;
+}
+
+/* Main Content */
+main {
+    padding-top: 80px; /* Adjust for fixed header */
+    flex: 1;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Section Styling */
+.section {
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #4f46e5;
+    margin-bottom: 2rem;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    background: #f9fafb;
+    padding: 6rem 0;
+    overflow: hidden;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #4f46e5;
+    margin-bottom: 1rem;
+}
+
+.subheadline {
+    font-size: 1.25rem;
+    color: #374151;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Mission Section */
+.mission-section p {
+    font-size: 1rem;
+    color: #374151;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+.mission-icons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.icon-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.icon-card svg {
+    width: 40px;
+    height: 40px;
+}
+
+.icon-card p {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #111827;
+}
+
+/* Team Section */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.team-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+}
+
+.team-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.team-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.25rem;
+}
+
+.team-card .role {
+    font-size: 0.9rem;
+    color: #4f46e5;
+    margin-bottom: 0.5rem;
+}
+
+.team-card p {
+    font-size: 0.8rem;
+    color: #374151;
+}
+
+/* Timeline Section */
+.timeline {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #4f46e5;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.timeline-dot {
+    width: 16px;
+    height: 16px;
+    background: #06b6d4;
+    border-radius: 50%;
+    position: absolute;
+    left: 14px;
+    z-index: 1;
+}
+
+.timeline-content {
+    margin-left: 40px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+}
+
+.timeline-content h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+    font-size: 0.9rem;
+    color: #374151;
+}
+
+/* CTA Section */
+.cta-section p {
+    font-size: 1rem;
+    color: #374151;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+.btn-primary {
+    background-color: #4f46e5;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #4338ca;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background-color: #fff;
+    color: #4f46e5;
+    border: 1px solid #4f46e5;
+}
+
+.btn-secondary:hover {
+    background-color: #f3f4f6;
+    transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* Footer */
+footer {
+    background-color: #1f2937;
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.footer-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.footer-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.footer-nav a:hover {
+    color: #06b6d4;
+}
+
+.footer-contact p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-bottom {
+    font-size: 0.8rem;
+}
+
+.footer-bottom a {
+    color: #06b6d4;
+    text-decoration: none;
+}
+
+.footer-bottom a:hover {
+    text-decoration: underline;
+}
+
+/* Reveal Animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        padding: 0.75rem 1.5rem;
+    }
+
+    .logo {
+        font-size: 1.75rem;
+    }
+
+    nav a {
+        margin-left: 1rem;
+        font-size: 0.875rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .hero-section {
+        padding: 4rem 0;
+    }
+
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .subheadline {
+        font-size: 1rem;
+    }
+
+    .section {
+        padding: 2rem 0;
+    }
+
+    .section h2 {
+        font-size: 1.75rem;
+    }
+
+    .mission-icons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline::before {
+        left: 10px;
+    }
+
+    .timeline-dot {
+        left: 4px;
+    }
+
+    .timeline-content {
+        margin-left: 30px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    nav a {
+        margin: 0 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .hero-section h1 {
+        font-size: 1.75rem;
+    }
+
+    .section h2 {
+        font-size: 1.5rem;
+    }
+
+    .team-card img {
+        width: 80px;
+        height: 80px;
+    }
+}
+</style>
+<body>
+    <header class="header">
+        <div class="logo">IdeaNest</div>
+        <nav>
+            <a href="#" class="active">Home</a>
+            <a href="#">Explore</a>
+            <a href="#">Submit Idea</a>
+            <a href="#">Profile</a>
+            <a href="#">About Us</a>
+            <a href="#">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <h1>Empowering Student Innovation</h1>
+                <p class="subheadline">IdeaNest connects students with mentors and funding to turn bold ideas into reality, fostering educational innovation worldwide.</p>
+                <svg class="hero-bg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                    <path fill="url(#gradient)" fill-opacity="0.3" d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,133.3C672,117,768,139,864,165.3C960,192,1056,224,1152,213.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </section>
+
+        <section class="mission-section section">
+            <div class="container">
+                <h2>Our Mission</h2>
+                <p>IdeaNest is dedicated to empowering students by funding their innovative ideas, connecting them with expert mentors, and fostering a global community of educational innovation. We believe every student deserves the opportunity to bring their vision to life.</p>
+                <div class="mission-icons">
+                    <div class="icon-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2">
+                            <path d="M12 21V3m0 0l-6 6m6-6l6 6" />
+                        </svg>
+                        <p>Innovation</p>
+                    </div>
+                    <div class="icon-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2m8-10a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                        </svg>
+                        <p>Collaboration</p>
+                    </div>
+                    <div class="icon-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2">
+                            <path d="M3 18v-6a9 9 0 0 1 18 0v6m-4-2v-8a4 4 0 0 0-8 0v8" />
+                        </svg>
+                        <p>Growth</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section section">
+            <div class="container">
+                <h2>Our Team</h2>
+                <div class="team-grid reveal">
+                    <div class="team-card card">
+                        <img src="https://via.placeholder.com/100" alt="Team Member Photo">
+                        <h3>Prabal Shukla</h3>
+                        <p class="role"></p>
+                        <p>Drives vision and strategy for IdeaNest.</p>
+                    </div>
+                    <div class="team-card card">
+                        <img src="https://via.placeholder.com/100" alt="Team Member Photo">
+                        <h3>Mark Lee</h3>
+                        <p class="role">CTO</p>
+                        <p>Leads platform development and tech innovation.</p>
+                    </div>
+                    <div class="team-card card">
+                        <img src="https://via.placeholder.com/100" alt="Team Member Photo">
+                        <h3>Sophia Patel</h3>
+                        <p class="role">Head of Partnerships</p>
+                        <p>Builds connections with mentors and donors.</p>
+                    </div>
+                    <div class="team-card card">
+                        <img src="https://via.placeholder.com/100" alt="Team Member Photo">
+                        <h3>David Kim</h3>
+                        <p class="role">Community Manager</p>
+                        <p>Fosters engagement within the IdeaNest community.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section section">
+            <div class="container">
+                <h2>Our Story</h2>
+                <div class="timeline reveal">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>2024</h3>
+                            <p>IdeaNest founded to empower student innovation.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Early 2025</h3>
+                            <p>Launched platform with 50+ mentors onboarded.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Mid 2025</h3>
+                            <p>First 50 student projects funded successfully.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Late 2025</h3>
+                            <p>Expanded to 10 countries, connecting 1000+ students.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section section">
+            <div class="container">
+                <h2>Join Our Community</h2>
+                <p>Be part of the IdeaNest movement! Start a project, mentor a student, or support innovation.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Get Started</a>
+                    <a href="#" class="btn btn-secondary">Join as Mentor</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">IdeaNest</div>
+                <div class="footer-nav">
+                    <a href="#">Home</a>
+                    <a href="#">Explore</a>
+                    <a href="#">Submit Idea</a>
+                    <a href="#">About Us</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-contact">
+                    <p>Email: contact@ideanest.org</p>
+                    <p>Follow us: <a href="#">Twitter</a> | <a href="#">LinkedIn</a></p>
+                </div>
+            </div>
+            <p class="footer-bottom">© 2025 IdeaNest. All rights reserved. <a href="#">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Reveal animations on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        reveals.forEach(element => observer.observe(element));
+    </script>
+</body>
+</html>

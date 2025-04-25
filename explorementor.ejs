@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Mentors & Donors | IdeaNest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+            color: #111827;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #4f46e5, #06b6d4);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        nav a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #e0e7ff;
+        }
+
+        nav a.active {
+            color: #e0e7ff;
+            font-weight: 700;
+        }
+
+        main {
+            padding-top: 80px;
+            flex: 1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4f46e5;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #374151;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            text-align: center;
+        }
+
+        .filter-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-bar label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #111827;
+        }
+
+        .filter-select {
+            padding: 0.5rem;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #111827;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        .filter-toggle {
+            display: none;
+            padding: 0.5rem 1rem;
+            background: #4f46e5;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .filter-toggle:hover {
+            background: #4338ca;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .profile-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 2px solid #4f46e5;
+        }
+
+        .profile-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-card p {
+            font-size: 0.9rem;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-card .btn {
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #4338ca;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background-color: #fff;
+            color: #4f46e5;
+            border: 1px solid #4f46e5;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f3f4f6;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(0);
+        }
+
+        footer {
+            background-color: #1f2937;
+            color: #fff;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #06b6d4;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 0.75rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.75rem;
+            }
+
+            nav a {
+                margin-left: 1rem;
+                font-size: 0.875rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+                margin: 1rem auto;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+            }
+
+            .filter-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-toggle {
+                display: block;
+            }
+
+            .filter-options {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-in-out;
+            }
+
+            .filter-options.active {
+                max-height: 200px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            nav a {
+                margin: 0 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .profile-card {
+                padding: 1rem;
+            }
+
+            .profile-card img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .btn {
+                padding: 0.65rem 1.25rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">IdeaNest</div>
+        <nav>
+            <a href="/" class="active">Home</a>
+            <a href="#">Explore</a>
+            <a href="/submit">Submit Idea</a>
+            <a href="/profile">Profile</a>
+            <a href="/login">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container">
+            <h1>Explore Mentors & Donors</h1>
+            <p class="subtitle">Connect with mentors and donors who are passionate about supporting innovative student projects.</p>
+
+            <div class="filter-bar">
+                <button class="filter-toggle" onclick="toggleFilters()">Show Filters</button>
+                <div class="filter-options">
+                    <label for="role-filter">Filter by Role:</label>
+                    <select id="role-filter" class="filter-select">
+                        <option value="all">All</option>
+                        <option value="mentor">Mentor</option>
+                        <option value="donor">Donor</option>
+                    </select>
+                    <label for="expertise-filter">Filter by Expertise:</label>
+                    <select id="expertise-filter" class="filter-select">
+                        <option value="all">All</option>
+                        <option value="tech">Tech</option>
+                        <option value="health">Health</option>
+                        <option value="arts">Arts</option>
+                        <option value="business">Business</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="cards">
+                <div class="profile-card" data-role="mentor" data-expertise="tech">
+                    <img src="https://via.placeholder.com/80" alt="Jane Doe">
+                    <h3>Jane Doe</h3>
+                    <p><strong>Mentor</strong></p>
+                    <p>AI expert with 10+ years in machine learning and ed-tech solutions.</p>
+                    <a href="/profile" class="btn btn-primary">View Profile</a>
+                    <a href="mailto:sh@gmail.com" class="btn btn-secondary">Contact</a>
+                </div>
+                <div class="profile-card" data-role="donor" data-expertise="health">
+                    <img src="https://via.placeholder.com/80" alt="John Smith">
+                    <h3>John Smith</h3>
+                    <p><strong>Donor</strong></p>
+                    <p>Philanthropist funding health-tech innovations for underserved communities.</p>
+                    <a href="/profile" class="btn btn-primary">View Profile</a>
+                    <a href="mailto:sh@gmail.com" class="btn btn-secondary">Contact</a>
+                </div>
+                <div class="profile-card" data-role="mentor" data-expertise="arts">
+                    <img src="https://via.placeholder.com/80" alt="Emily Chen">
+                    <h3>Emily Chen</h3>
+                    <p><strong>Mentor</strong></p>
+                    <p>VR artist mentoring students in digital and immersive art creation.</p>
+                    <a href="/profile" class="btn btn-primary">View Profile</a>
+                    <a href="mailto:sh@gmail.com" class="btn btn-secondary">Contact</a>
+                </div>
+                
+                <div class="profile-card" data-role="donor" data-expertise="business">
+                    <img src="https://via.placeholder.com/80" alt="Michael Brown">
+                    <h3>Michael Brown</h3>
+                    <p><strong>Donor</strong></p>
+                    <p>Investor supporting sustainable student startups and green initiatives.</p>
+                    <a href="/profile" class="btn btn-primary">View Profile</a>
+                    <a href="mailto:sh@gmail.com" class="btn btn-secondary">Contact</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 IdeaNest. All rights reserved. <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        function toggleFilters() {
+            const filterOptions = document.querySelector('.filter-options');
+            filterOptions.classList.toggle('active');
+        }
+
+        const roleFilter = document.getElementById('role-filter');
+        const expertiseFilter = document.getElementById('expertise-filter');
+        const profileCards = document.querySelectorAll('.profile-card');
+
+        function applyFilters() {
+            const selectedRole = roleFilter.value;
+            const selectedExpertise = expertiseFilter.value;
+
+            profileCards.forEach(card => {
+                const cardRole = card.getAttribute('data-role');
+                const cardExpertise = card.getAttribute('data-expertise');
+                const roleMatch = selectedRole === 'all' || cardRole === selectedRole;
+                const expertiseMatch = selectedExpertise === 'all' || cardExpertise === selectedExpertise;
+                card.style.display = roleMatch && expertiseMatch ? 'flex' : 'none';
+            });
+        }
+
+        roleFilter.addEventListener('change', applyFilters);
+        expertiseFilter.addEventListener('change', applyFilters);
+    </script>
+</body>
+</html>

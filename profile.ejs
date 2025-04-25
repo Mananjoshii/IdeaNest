@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | IdeaNest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafb;
+    color: #111827;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Styling */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+nav a {
+    margin-left: 2rem;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: #e0e7ff;
+}
+
+nav a.active {
+    color: #e0e7ff;
+    font-weight: 700;
+}
+
+/* Main Content */
+main {
+    padding-top: 80px; /* Adjust for fixed header */
+    flex: 1;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+/* Profile Card */
+.profile-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    transition: transform 0.2s;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #06b6d4;
+}
+
+.profile-info h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.profile-info .role {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #4f46e5;
+    margin-bottom: 0.5rem;
+}
+
+.profile-info .bio {
+    font-size: 1rem;
+    color: #374151;
+    margin-bottom: 1rem;
+}
+
+.profile-info .contact {
+    font-size: 0.9rem;
+    color: #374151;
+    line-height: 1.5;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+.btn-primary {
+    background-color: #4f46e5;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #4338ca;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background-color: #fff;
+    color: #4f46e5;
+    border: 1px solid #4f46e5;
+}
+
+.btn-secondary:hover {
+    background-color: #f3f4f6;
+    transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* Activities Section */
+.activities h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #4f46e5;
+    margin: 2rem 0 1rem;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.idea-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s;
+}
+
+.idea-card:hover {
+    transform: translateY(-5px);
+}
+
+.idea-card h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.idea-card p {
+    font-size: 0.9rem;
+    color: #374151;
+}
+
+/* Edit Profile Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-content h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+}
+
+.modal-content label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #374151;
+    margin: 0.5rem 0 0.25rem;
+}
+
+.modal-content input,
+.modal-content textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #374151;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #111827;
+    font-family: 'Inter', sans-serif;
+}
+
+.modal-content textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.modal-content button {
+    margin-top: 1rem;
+}
+
+.modal-content .save-btn {
+    margin-right: 0.5rem;
+}
+
+/* Footer */
+footer {
+    background-color: #1f2937;
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: #06b6d4;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        padding: 0.75rem 1.5rem;
+    }
+
+    .logo {
+        font-size: 1.75rem;
+    }
+
+    nav a {
+        margin-left: 1rem;
+        font-size: 0.875rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+        margin: 1rem auto;
+    }
+
+    .profile-card {
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .profile-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-info h2 {
+        font-size: 1.5rem;
+    }
+
+    .profile-info .role {
+        font-size: 0.9rem;
+    }
+
+    .profile-info .bio {
+        font-size: 0.9rem;
+    }
+
+    .activities h3 {
+        font-size: 1.25rem;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+        width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    nav a {
+        margin: 0 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .profile-info h2 {
+        font-size: 1.25rem;
+    }
+
+    .btn {
+        padding: 0.65rem 1.25rem;
+        font-size: 0.9rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">IdeaNest</div>
+        <nav>
+            <a href="#" class="active">Home</a>
+            <a href="#">Explore</a>
+            <a href="#">Submit Idea</a>
+            <a href="#">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container">
+            <div class="profile-card card">
+                <img src="https://i.imgur.com/4ZQZxVF.png" alt="Profile Picture" class="profile-img">
+                <div class="profile-info">
+                    <h2>Jane Doe</h2>
+                    <p class="role">Student | Computer Science</p>
+                    <p class="bio">Passionate about solving real-world problems through AI and education.</p>
+                    <p class="contact">📧 jane.doe@example.com<br>📍 Bengaluru, India</p>
+                    <button class="btn btn-primary edit-btn">Edit Profile</button>
+                </div>
+            </div>
+
+            <div class="activities">
+                <h3>Submitted Ideas</h3>
+                <div class="cards">
+                    <div class="card idea-card">
+                        <h4>AI Tutor for Rural Students</h4>
+                        <p>Status: ⏳ Pending Review</p>
+                    </div>
+                    <div class="card idea-card">
+                        <h4>Eco-Lab Starter Kit</h4>
+                        <p>Status: ✅ Funded</p>
+                    </div>
+                </div>
+
+                <h3>Supported Ideas</h3>
+                <div class="cards">
+                    <div class="card idea-card">
+                        <h4>Blockchain Voting App</h4>
+                        <p>Role: 🧑‍🏫 Mentor</p>
+                    </div>
+                    <div class="card idea-card">
+                        <h4>Smart Irrigation</h4>
+                        <p>Role: 💸 Donor</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="modal" id="edit-profile-modal">
+            <div class="modal-content card">
+                <h2>Edit Profile</h2>
+                <form>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" value="Jane Doe">
+                    <label for="role">Role</label>
+                    <input type="text" id="role" value="Student | Computer Science">
+                    <label for="bio">Bio</label>
+                    <textarea id="bio">Passionate about solving real-world problems through AI and education.</textarea>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" value="jane.doe@example.com">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" value="Bengaluru, India">
+                    <button type="submit" class="btn btn-primary save-btn">Save</button>
+                    <button type="button" class="btn btn-secondary close-btn">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 IdeaNest. All rights reserved. <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        const editBtn = document.querySelector('.edit-btn');
+        const modal = document.getElementById('edit-profile-modal');
+        const closeBtn = document.querySelector('.close-btn');
+        editBtn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

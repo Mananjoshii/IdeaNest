@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student Profile | IdeaNest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+                * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'Poppins', sans-serif;
+            background-color: #f9fafb;
+            color: #111827;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styling */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #4f46e5, #06b6d4);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        nav a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #e0e7ff;
+        }
+
+        nav a.active {
+            color: #e0e7ff;
+            font-weight: 700;
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 80px; /* Adjust for fixed header */
+            flex: 1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .section h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4f46e5;
+            margin-bottom: 2rem;
+        }
+
+        /* Student Edit Form */
+        .card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        form label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #374151;
+            margin: 1rem 0 0.25rem;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #111827;
+            font-family: 'Inter', 'Poppins', sans-serif;
+        }
+
+        form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Profile Picture */
+        .profile-picture {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .student-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #06b6d4;
+        }
+
+        .upload-btn {
+            padding: 0.65rem 1.25rem;
+        }
+
+        /* Interest Tags */
+        .interest-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background: #e0e7ff;
+            color: #4f46e5;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+
+        .remove-tag {
+            background: none;
+            border: none;
+            color: #4f46e5;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-left: 0.25rem;
+        }
+
+        .tag-input {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag-input input {
+            flex: 1;
+        }
+
+        .add-tag {
+            padding: 0.65rem 1.25rem;
+        }
+
+        /* Projects List */
+        .projects-list {
+            margin-bottom: 1rem;
+        }
+
+        .project-item {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-item input {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .project-item .remove-project {
+            padding: 0.65rem 1.25rem;
+        }
+
+        .add-project {
+            margin-bottom: 1rem;
+        }
+
+        /* Availability Slots */
+        .availability-slots {
+            margin-bottom: 1rem;
+        }
+
+        .slot-item {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .slot-item input {
+            flex: 1;
+        }
+
+        .slot-item .remove-slot {
+            padding: 0.65rem 1.25rem;
+        }
+
+        .add-slot {
+            margin-bottom: 1rem;
+        }
+
+        /* Open to Collaboration Toggle */
+        .open-collaboration {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #374151;
+            margin: 1rem 0;
+        }
+
+        /* Form Actions */
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #4338ca;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background-color: #fff;
+            color: #4f46e5;
+            border: 1px solid #4f46e5;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f3f4f6;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(0);
+        }
+
+        /* Save Animation */
+        .save-btn.saving {
+            animation: pulse 1s ease;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1f2937;
+            color: #fff;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #06b6d4;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                padding: 0.75rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.75rem;
+            }
+
+            nav a {
+                margin-left: 1rem;
+                font-size: 0.875rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .section {
+                padding: 2rem 0;
+            }
+
+            .section h1 {
+                font-size: 1.75rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .profile-picture {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .student-photo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .project-item,
+            .slot-item {
+                flex-direction: column;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            nav a {
+                margin: 0 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            .section h1 {
+                font-size: 1.5rem;
+            }
+
+            .btn {
+                padding: 0.65rem 1.25rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">IdeaNest</div>
+        <nav>
+            <a href="#" class="active">Home</a>
+            <a href="#">Explore</a>
+            <a href="#">Submit Idea</a>
+            <a href="#">Profile</a>
+            <a href="#">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="student-edit-section section">
+            <div class="container">
+                <h1>Submit Your Idea</h1>
+                <form id="student-form" class="card reveal">
+                    <!-- Profile Picture -->
+                    <div class="profile-picture">
+                        <img src="https://via.placeholder.com/120" alt="Student Photo" class="student-photo" id="student-photo">
+                        <label for="photo-upload" class="btn btn-secondary upload-btn">Upload Photo</label>
+                        <input type="file" id="photo-upload" accept="image/*" style="display: none;">
+                    </div>
+
+                    <!-- Basic Info -->
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" value="Jane Doe" required>
+
+                    <label for="major">Academic Program / Major</label>
+                    <input type="text" id="major" value="Computer Science" required>
+
+                    <!-- Areas of Interest -->
+                    <label>Areas of Interest</label>
+                    <div class="interest-tags" id="interest-tags">
+                        <span class="tag" data-value="AI">AI <button type="button" class="remove-tag">×</button></span>
+                        <span class="tag" data-value="Education">Education <button type="button" class="remove-tag">×</button></span>
+                        <span class="tag" data-value="Web Development">Web Development <button type="button" class="remove-tag">×</button></span>
+                    </div>
+                    <div class="tag-input">
+                        <input type="text" id="new-interest" placeholder="Add interest (e.g., AI)">
+                        <button type="button" class="btn btn-primary add-tag">Add</button>
+                    </div>
+
+                    <!-- Bio -->
+                    <label for="bio">Bio / About</label>
+                    <textarea id="bio" required>Jane Doe is a Computer Science student passionate about leveraging AI and web technologies to create accessible educational tools. She aims to build solutions that empower underserved communities.</textarea>
+
+                    <!-- Contact Info -->
+                    <label for="email">Email</label>
+                    <input type="email" id="email" value="jane.doe@example.com" required>
+
+                    <label for="linkedin">LinkedIn</label>
+                    <input type="url" id="linkedin" value="https://linkedin.com/in/janedoe">
+
+                    <label for="website">Personal Website</label>
+                    <input type="url" id="website" value="https://janedoe.com">
+
+                    <!-- Projects Submitted -->
+                    <label>Projects Submitted</label>
+                    <div class="projects-list" id="projects-list">
+                        <div class="project-item">
+                            <input type="text" class="project-name" value="AI Tutor for Rural Students" placeholder="Project Name" required>
+                            <input type="url" class="project-link" value="project_details.html" placeholder="Project Link">
+                            <button type="button" class="btn btn-secondary remove-project">Remove</button>
+                        </div>
+                        <div class="project-item">
+                            <input type="text" class="project-name" value="Eco-Lab Starter Kit" placeholder="Project Name" required>
+                            <input type="url" class="project-link" value="project_details.html" placeholder="Project Link">
+                            <button type="button" class="btn btn-secondary remove-project">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary add-project">Add Project</button>
+
+                    <!-- Availability -->
+                    <label>Availability</label>
+                    <div class="availability-slots" id="availability-slots">
+                        <div class="slot-item">
+                            <input type="text" class="slot" value="Fridays, 3:00 PM - 5:00 PM (UTC)" placeholder="Day & Time (e.g., Mondays, 10:00 AM)" required>
+                            <button type="button" class="btn btn-secondary remove-slot">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary add-slot">Add Slot</button>
+
+            
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary save-btn">Save Changes</button>
+                        <button type="button" class="btn btn-secondary cancel-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>©️ 2025 IdeaNest. All rights reserved. <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        // Profile Picture Preview
+        const photoUpload = document.getElementById('photo-upload');
+        const studentPhoto = document.getElementById('student-photo');
+        photoUpload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                studentPhoto.src = URL.createObjectURL(file);
+            }
+        });
+
+        // Interest Tags
+        const interestTags = document.getElementById('interest-tags');
+        const newInterestInput = document.getElementById('new-interest');
+        const addTagBtn = document.querySelector('.add-tag');
+
+        addTagBtn.addEventListener('click', () => {
+            const value = newInterestInput.value.trim();
+            if (value) {
+                const tag = document.createElement('span');
+                tag.className = 'tag';
+                tag.dataset.value = value;
+                tag.innerHTML = `${value} <button type="button" class="remove-tag">×</button>`;
+                interestTags.appendChild(tag);
+                newInterestInput.value = '';
+            }
+        });
+
+        interestTags.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-tag')) {
+                e.target.parentElement.remove();
+            }
+        });
+
+        // Projects List
+        const projectsList = document.getElementById('projects-list');
+        const addProjectBtn = document.querySelector('.add-project');
+
+        addProjectBtn.addEventListener('click', () => {
+            const projectItem = document.createElement('div');
+            projectItem.className = 'project-item';
+            projectItem.innerHTML = `
+                <input type="text" class="project-name" placeholder="Project Name" required>
+                <input type="url" class="project-link" placeholder="Project Link">
+                <button type="button" class="btn btn-secondary remove-project">Remove</button>
+            `;
+            projectsList.appendChild(projectItem);
+        });
+
+        projectsList.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-project')) {
+                e.target.parentElement.remove();
+            }
+        });
+
+        // Availability Slots
+        const availabilitySlots = document.getElementById('availability-slots');
+        const addSlotBtn = document.querySelector('.add-slot');
+
+        addSlotBtn.addEventListener('click', () => {
+            const slotItem = document.createElement('div');
+            slotItem.className = 'slot-item';
+            slotItem.innerHTML = `
+                <input type="text" class="slot" placeholder="Day & Time (e.g., Mondays, 10:00 AM)" required>
+                <button type="button" class="btn btn-secondary remove-slot">Remove</button>
+            `;
+            availabilitySlots.appendChild(slotItem);
+        });
+
+        availabilitySlots.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-slot')) {
+                e.target.parentElement.remove();
+            }
+        });
+
+        // Save Animation
+        const saveBtn = document.querySelector('.save-btn');
+        saveBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            saveBtn.classList.add('saving');
+            setTimeout(() => {
+                saveBtn.classList.remove('saving');
+                alert('Profile saved!'); // Replace with actual save logic
+            }, 1000);
+        });
+
+        // Cancel Button
+        const cancelBtn = document.querySelector('.cancel-btn');
+        cancelBtn.addEventListener('click', () => {
+            document.getElementById('student-form').reset();
+            interestTags.innerHTML = `
+                <span class="tag" data-value="AI">AI <button type="button" class="remove-tag">×</button></span>
+                <span class="tag" data-value="Education">Education <button type="button" class="remove-tag">×</button></span>
+                <span class="tag" data-value="Web Development">Web Development <button type="button" class="remove-tag">×</button></span>
+            `;
+            projectsList.innerHTML = `
+                <div class="project-item">
+                    <input type="text" class="project-name" value="AI Tutor for Rural Students" placeholder="Project Name" required>
+                    <input type="url" class="project-link" value="project_details.html" placeholder="Project Link">
+                    <button type="button" class="btn btn-secondary remove-project">Remove</button>
+                </div>
+                <div class="project-item">
+                    <input type="text" class="project-name" value="Eco-Lab Starter Kit" placeholder="Project Name" required>
+                    <input type="url" class="project-link" value="project_details.html" placeholder="Project Link">
+                    <button type="button" class="btn btn-secondary remove-project">Remove</button>
+                </div>
+            `;
+            availabilitySlots.innerHTML = `
+                <div class="slot-item">
+                    <input type="text" class="slot" value="Fridays, 3:00 PM - 5:00 PM (UTC)" placeholder="Day & Time (e.g., Mondays, 10:00 AM)" required>
+                    <button type="button" class="btn btn-secondary remove-slot">Remove</button>
+                </div>
+            `;
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Reveal animation on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        reveals.forEach(element => observer.observe(element));
+    </script>
+</body>
+</html>
