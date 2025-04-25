@@ -2,8 +2,17 @@ import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
 
+
 const app = express();
 const port = 3000;
+app.set("view engine", "ejs");
+
+// MIDDLEWARE - THIS IS IMPORTANT
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Static files if needed
+app.use(express.static("public"));
 
 const db = new pg.Client({
   user: "postgres",
@@ -29,34 +38,17 @@ app.get("/login", (req, res) => {
 
 app.get("/register", (req, res) => {
   res.render("register.ejs");
+  console.log("🔁 Form submitted");
+  console.log(req.body); 
 });
 
 app.post("/register", async (req, res) => {
-  const name = req.body.name;
-  const email = req.body.username;
-  const password = req.body.password;
-  const role = req.body.role;
+  console.log("🔁 POST /register called");
+  console.log("Form data:", req.body);
 
-
-  try {
-    const checkResult = await db.query("SELECT * FROM users WHERE email = $1", [
-      email,
-    ]);
-
-    if (checkResult.rows.length > 0) {
-      res.send("Email already exists. Try logging in.");
-    } else {
-      const result = await db.query(
-        "INSERT INTO users (name,email, password,role) VALUES ($1, $2,$3,$4)",
-        [name,email, password,role]
-      );
-      console.log(result);
-      res.render("home.ejs");
-    }
-  } catch (err) {
-    console.log(err);
-  }
+  res.send("Received the form"); // Just check if form is reaching backend
 });
+
 
 app.post("/login", async (req, res) => {
   const email = req.body.email;
