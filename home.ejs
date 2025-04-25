@@ -9,324 +9,437 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="home.css">
-   <style>
-     
-     * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f9fafb;
-    color: #111827;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: linear-gradient(135deg, #4f46e5, #06b6d4);
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-  }
-  
-  .logo {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #ffffff;
-  }
-  
-  nav a {
-    margin-left: 2rem;
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: 500;
-    font-size: 1rem;
-    transition: color 0.2s;
-  }
-  
-  nav a:hover {
-    color: #e0e7ff;
-  }
-  
-  nav a.active {
-    color: #e0e7ff;
-    font-weight: 700;
-  }
-  
-  main {
-    padding-top: 60px; /* Adjust for fixed header */
-  }
-  
-  .hero {
-    display: flex;
-    flex-direction: row;
-    min-height: 100vh;
-    background-color: #f9fafb;
-  }
-  
-  .hero-image {
-    flex: 1;
-    background: linear-gradient(135deg, #4f46e5, #06b6d4);
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 3rem;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .hero-image::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23ffffff" fill-opacity="0.1" fill-rule="evenodd"%3E%3Ccircle cx="3" cy="3" r="3"/%3E%3Ccircle cx="13" cy="13" r="3"/%3E%3C/g%3E%3C/svg%3E');
-    z-index: 1;
-  }
-  
-  .hero-image h1 {
-    font-size: clamp(2rem, 5vw, 2.5rem);
-    font-weight: 800;
-    text-align: center;
-    line-height: 1.3;
-    z-index: 2;
-  }
-  
-  .hero-image p {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    max-width: 600px;
-    margin: 1rem 0;
-    text-align: center;
-    opacity: 0.9;
-    z-index: 2;
-  }
-  
-  .illustration {
-    margin-top: 2rem;
-    max-width: 200px;
-    z-index: 2;
-  }
-  
-  .hero-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 3rem;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-  }
-  
-  .hero-content h2 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 1rem;
-  }
-  
-  .hero-content p {
-    font-size: 1rem;
-    color: #374151;
-    max-width: 500px;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  .btn {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
-  }
-  
-  .btn-primary {
-    background-color: #4f46e5;
-    color: #fff;
-  }
-  
-  .btn-primary:hover {
-    background-color: #4338ca;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-  }
-  
-  .btn-primary:active {
-    transform: translateY(0);
-  }
-  
-  .btn-secondary {
-    background-color: #fff;
-    color: #4f46e5;
-    border: 1px solid #4f46e5;
-  }
-  
-  .btn-secondary:hover {
-    background-color: #f3f4f6;
-    transform: translateY(-2px);
-  }
-  
-  .btn-secondary:active {
-    transform: translateY(0);
-  }
-  
-  .section {
-    padding: 4rem 2rem;
-    text-align: center;
-  }
-  
-  .section h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #4f46e5;
-    margin-bottom: 2rem;
-  }
-  
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .card {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: transform 0.2s;
-  }
-  
-  .card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .card h3 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 1rem;
-  }
-  
-  .card p {
-    font-size: 0.9rem;
-    color: #374151;
-  }
-  
-  footer {
-    background-color: #1f2937;
-    color: #fff;
-    padding: 2rem;
-    text-align: center;
-    font-size: 0.9rem;
-  }
-  
-  footer a {
-    color: #06b6d4;
-    text-decoration: none;
-  }
-  
-  footer a:hover {
-    text-decoration: underline;
-  }
-  
-  @media (max-width: 768px) {
-    .hero {
+  <style>
+    .message {
+      margin: 0.5rem 0;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+
+    .user {
+      align-self: flex-end;
+      background-color: #e0e7ff;
+      color: #1e3a8a;
+      text-align: right;
+      margin-left: auto;
+    }
+
+    .bot {
+      align-self: flex-start;
+      background-color: #f3f4f6;
+      color: #111827;
+      margin-right: auto;
+    }
+    /* Chatbot Styles */
+    .chatbot-wrapper {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    .chatbot-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #4f46e5;
+      color: white;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .chat-window {
+      display: none;
+      flex-direction: column;
+      width: 300px;
+      height: 400px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .chat-header {
+      background: #4f46e5;
+      color: white;
+      padding: 1rem;
+      border-radius: 12px 12px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+
+    .chat-input {
+      display: flex;
+      padding: 1rem;
+      gap: 0.5rem;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+      color: #111827;
+      min-height: 100vh;
+      display: flex;
       flex-direction: column;
     }
-  
-    .hero-image,
-    .hero-content {
-      flex: none;
-      min-height: 300px;
-      padding: 2rem;
-    }
-  
-    .hero-image h1 {
-      font-size: 1.75rem;
-    }
-  
-    .hero-image p {
-      font-size: 0.875rem;
-    }
-  
-    .hero-content h2 {
-      font-size: 1.5rem;
-    }
-  
-    .section {
-      padding: 2rem 1rem;
-    }
-  
+
     .header {
-      padding: 0.75rem 1.5rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
     }
-  
-    nav a {
-      margin-left: 1rem;
-      font-size: 0.875rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
+
     .logo {
-      font-size: 1.75rem;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ffffff;
     }
-  
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: #e0e7ff;
+    }
+
+    nav a.active {
+      color: #e0e7ff;
+      font-weight: 700;
+    }
+
+    .profile-photo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ffffff;
+      margin-left: 2rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .profile-photo:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    }
+
+    main {
+      padding-top: 60px;
+      /* Adjust for fixed header */
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+      background-color: #f9fafb;
+    }
+
+    .hero-image {
+      flex: 1;
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23ffffff" fill-opacity="0.1" fill-rule="evenodd"%3E%3Ccircle cx="3" cy="3" r="3"/%3E%3Ccircle cx="13" cy="13" r="3"/%3E%3C/g%3E%3C/svg%3E');
+      z-index: 1;
+    }
+
     .hero-image h1 {
-      font-size: 1.5rem;
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      font-weight: 800;
+      text-align: center;
+      line-height: 1.3;
+      z-index: 2;
     }
-  
+
+    .hero-image p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      max-width: 600px;
+      margin: 1rem 0;
+      text-align: center;
+      opacity: 0.9;
+      z-index: 2;
+    }
+
+    .illustration {
+      margin-top: 2rem;
+      max-width: 200px;
+      z-index: 2;
+    }
+
     .hero-content {
-      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
     }
-  
-    .btn {
-      padding: 0.65rem 1.25rem;
-    }
-  
-    .section h2 {
+
+    .hero-content h2 {
       font-size: 1.75rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 1rem;
     }
-  
+
+    .hero-content p {
+      font-size: 1rem;
+      color: #374151;
+      max-width: 500px;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+    }
+
+    .btn-primary {
+      background-color: #4f46e5;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background-color: #4338ca;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background-color: #fff;
+      color: #4f46e5;
+      border: 1px solid #4f46e5;
+    }
+
+    .btn-secondary:hover {
+      background-color: #f3f4f6;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary:active {
+      transform: translateY(0);
+    }
+
+    .section {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #4f46e5;
+      margin-bottom: 2rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
     .card {
-      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: transform 0.2s;
     }
-  }
-  </style> 
- 
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 1rem;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: #374151;
+    }
+
+    footer {
+      background-color: #1f2937;
+      color: #fff;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #06b6d4;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+      }
+
+      .hero-image,
+      .hero-content {
+        flex: none;
+        min-height: 300px;
+        padding: 2rem;
+      }
+
+      .hero-image h1 {
+        font-size: 1.75rem;
+      }
+
+      .hero-image p {
+        font-size: 0.875rem;
+      }
+
+      .hero-content h2 {
+        font-size: 1.5rem;
+      }
+
+      .section {
+        padding: 2rem 1rem;
+      }
+
+      .header {
+        padding: 0.75rem 1.5rem;
+      }
+
+      nav a {
+        margin-left: 1rem;
+        font-size: 0.875rem;
+      }
+
+      .profile-photo {
+        width: 32px;
+        height: 32px;
+        margin-left: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 1.75rem;
+      }
+
+      .hero-image h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero-content {
+        padding: 1.5rem;
+      }
+
+      .btn {
+        padding: 0.65rem 1.25rem;
+      }
+
+      .section h2 {
+        font-size: 1.75rem;
+      }
+
+      .card {
+        padding: 1.5rem;
+      }
+
+      .profile-photo {
+        width: 28px;
+        height: 28px;
+        margin-left: 0.5rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
   <header class="header">
     <div class="logo">IdeaNest</div>
     <nav>
-      <a href="/"class="active">Home</a>
+      <a href="/" class="active">Home</a>
+      <a href="/aboutus" class="active">About Us</a>
       <a href="#how">How It Works</a>
       <a href="/register">Join</a>
       <a href="/login">Login</a>
+      <a href="/profile"><img src="https://via.placeholder.com/40" alt="Profile" class="profile-photo" /></a>
+
     </nav>
   </header>
   <main>
@@ -337,9 +450,9 @@
         <button class="btn btn-primary">Get Started</button>
         <div class="illustration" aria-hidden="true">
           <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="100" cy="100" r="80" fill="url(#grad1)" opacity="0.3"/>
-            <path d="M60 120 L100 80 L140 120" stroke="#06B6D4" stroke-width="8" stroke-linecap="round"/>
-            <path d="M100 80 V140" stroke="#4F46E5" stroke-width="8" stroke-linecap="round"/>
+            <circle cx="100" cy="100" r="80" fill="url(#grad1)" opacity="0.3" />
+            <path d="M60 120 L100 80 L140 120" stroke="#06B6D4" stroke-width="8" stroke-linecap="round" />
+            <path d="M100 80 V140" stroke="#4F46E5" stroke-width="8" stroke-linecap="round" />
             <defs>
               <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
@@ -352,26 +465,63 @@
 
       <div class="hero-content">
         <h2>Why IdeaNest?</h2>
-        <p>Join a vibrant community of students, mentors, donors, and educators dedicated to transforming education through innovation.</p>
+        <p>Join a vibant community of students, mentors, donors, and educators dedicated to transforming education
+          through innovation.</p>
         <a href="#join" class="btn btn-secondary">Join Now</a>
       </div>
     </section>
     <section class="section" id="how">
       <h2>How It Works</h2>
-      <div class="cards">
-        <div class="card">
-          <h3>Submit Your Idea</h3>
-          <p>Tell us what you're working on and how it will make an impact.</p>
+
+
+      <div class="cards"
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+
+        <!-- Submit Idea Card -->
+        <a href="/submit" style="text-decoration: none;">
+          <div class="card"
+            style="padding: 20px; border-radius: 12px; background-color: #ffffff; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05); transition: transform 0.2s; text-align: center;">
+            <h3 style="margin-bottom: 10px; font-size: 1.25rem; font-weight: 700; color: #111827;">Submit Your Idea</h3>
+            <p style="margin-bottom: 20px; font-size: 0.95rem; color: #374151;">
+              Tell us what you're working on and how it will make an impact.
+            </p>
+            <button
+              style="background-color: #4f46e5; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2); font-size: 0.95rem; font-weight: 600; transition: background-color 0.2s;">
+              Explore Ideas
+            </button>
+          </div>
+        </a>
+
+        <!-- Find Support Card -->
+        <a href="/explorementor" style="text-decoration: none;">
+          <div class="card"
+            style="padding: 20px; border-radius: 12px; background-color: #ffffff; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05); transition: transform 0.2s; text-align: center;">
+            <h3 style="margin-bottom: 10px; font-size: 1.25rem; font-weight: 700; color: #111827;">Find Support</h3>
+            <p style="margin-bottom: 20px; font-size: 0.95rem; color: #374151;">
+              Get matched with mentors, donors, and industry experts.
+            </p>
+            <button
+              style="background-color: #4f46e5; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2); font-size: 0.95rem; font-weight: 600; transition: background-color 0.2s;">
+              Explore Mentors
+            </button>
+          </div>
+        </a>
+
+        <!-- Grow & Launch Card -->
+        <div class="card"
+          style="padding: 20px; border-radius: 12px; background-color: #ffffff; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05); transition: transform 0.2s; text-align: center;">
+          <h3 style="margin-bottom: 10px; font-size: 1.25rem; font-weight: 700; color: #111827;">Grow & Launch</h3>
+          <p style="margin-bottom: 20px; font-size: 0.95rem; color: #374151;">
+            Receive funding and mentorship to bring your vision to life.
+          </p>
+          <button
+            style="background-color: #4f46e5; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2); font-size: 0.95rem; font-weight: 600; transition: background-color 0.2s;">
+            Get Started
+          </button>
         </div>
-        <div class="card">
-          <h3>Find Support</h3>
-          <p>Get matched with mentors, donors, and industry experts.</p>
-        </div>
-        <div class="card">
-          <h3>Grow & Launch</h3>
-          <p>Receive funding and mentorship to bring your vision to life.</p>
-        </div>
+
       </div>
+
     </section>
     <section class="section" id="join">
       <h2>Who Can Join?</h2>
@@ -395,8 +545,115 @@
       </div>
     </section>
   </main>
+  <!-- Chatbot UI -->
+  <div class="chatbot-wrapper">
+    <button class="chatbot-icon" onclick="toggleChat()" aria-label="Toggle Chatbot">💬</button>
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-header">
+        <h3>IdeaNest Assistant</h3>
+        <button onclick="toggleChat()" aria-label="Close Chatbot">×</button>
+      </div>
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+  <section class="section" id="help">
+    <h2>Need Help?</h2>
+    <p>Got questions? Send us a message on WhatsApp directly from here.</p>
+    <div class="card" style="max-width: 500px; margin: 2rem auto;">
+      <textarea id="userMessage" rows="4" style="width: 100%; padding: 1rem; border-radius: 0.5rem; border: 1px solid #ccc;" placeholder="Type your message here..."></textarea>
+      <button id="whatsappBtn" style="margin-top: 1rem; padding: 0.6rem 1.2rem; background-color: #4f46e5; color: white; border: none; border-radius: 0.4rem; cursor: pointer;">Send on WhatsApp</button>
+    </div>
+  </section>
+  
   <footer>
-    © 2025 IdeaNest. All rights reserved. | <a href="/contact">Contact us</a> | <a href="/privacy">Privacy Policy</a>
+    ©️ 2025 IdeaNest. All rights reserved. | <a href="/contact">Contact us</a> | <a href="/privacy">Privacy Policy</a>
   </footer>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    const API_KEY = '185a565fbbd84517aef7c1ed1ba415d4'; // Replace with your actual API key
+
+    let chatHistory = [{
+      role: "system",
+  content: "I am IdeaNest Assistant, helping students submit ideas, connect with mentors, find funding, and track progress. Guide users on idea submission, mentor registration, SDG tagging, and platform features. Keep responses clear, concise, and action-oriented. Direct users to appropriate resources and APIs as needed."
+}, {
+      role: "user",
+      content: "Provide clear, concise, and actionable responses to users about the platform's features, guiding them in submitting ideas, connecting with mentors, finding funding opportunities, and utilizing the SDG tagging system. Ensure responses align with Sustainable Development Goals (SDGs), suggest relevant tags, and direct users to appropriate platform actions (e.g., submitting ideas, mentor registration). If a request is unclear, ask for clarification to ensure accurate assistance."
+    }];
+
+    async function sendMessage() {
+      const userInput = document.getElementById('userInput');
+      const message = userInput.value.trim();
+      if (!message) return;
+
+      appendMessage(message, 'user');
+      userInput.value = '';
+
+      const typingIndicator = appendMessage('Typing...', 'bot');
+
+      try {
+        const response = await fetch(`https://api.aimlapi.com/v1/chat/completions`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${API_KEY}` },
+          body: JSON.stringify({
+            model: "gpt-4o",
+            messages: chatHistory.concat([{ role: "user", content: message }])
+          })
+        });
+
+        const data = await response.json();
+        const botResponse = data.choices[0].message.content;
+
+        chatHistory.push({ role: "user", content: message }, { role: "assistant", content: botResponse });
+
+        typingIndicator.remove();
+        appendMessage(botResponse, 'bot');
+      } catch (error) {
+        typingIndicator.remove();
+        appendMessage('Sorry, I encountered an error. Please try again.', 'bot');
+      }
+    }
+
+    function appendMessage(text, sender) {
+      const messagesDiv = document.getElementById('chatMessages');
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('message', sender);
+      messageDiv.textContent = text;
+      messagesDiv.appendChild(messageDiv);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight; // Scroll to bottom
+      return messageDiv;
+    }
+
+    function toggleChat() {
+      const chatWindow = document.getElementById('chatWindow');
+      chatWindow.style.display = chatWindow.style.display === 'none' || !chatWindow.style.display ? 'flex' : 'none';
+    }
+
+    $("#whatsappBtn").click(function () {
+    const userMessage = $("#userMessage").val().trim();
+    if (userMessage === "") {
+      alert("Please type a message before sending.");
+      return;
+    }
+
+    $.ajax({
+      url: "/sendWhatsApp",
+      method: "POST",
+      data: { userMessage },
+      success: function (response) {
+        alert("✅ Message sent successfully!");
+        $("#userMessage").val("");
+      },
+      error: function () {
+        alert("❌ Failed to send message.");
+      },
+    });
+  });
+  </script>
 </body>
+
 </html>
