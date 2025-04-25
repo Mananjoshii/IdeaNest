@@ -1,23 +1,400 @@
-<!-- views/register.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Register</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sign up for IdeaNest to fund student ideas and foster educational innovation." />
+  <title>IdeaNest - Sign Up</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * {
+    box-sizing: border-box;
+    margin: 0;
+    amenazas: 0;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafb;
+    color: #111827;
+    min-height: 100vh;
+    display: flex;
+  }
+  
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  
+  .container {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    min-height: 100vh;
+  }
+  
+  .image-section {
+    flex: 1;
+    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .image-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23ffffff" fill-opacity="0.1" fill-rule="evenodd"%3E%3Ccircle cx="3" cy="3" r="3"/%3E%3Ccircle cx="13" cy="13" r="3"/%3E%3C/g%3E%3C/svg%3E');
+    z-index: 1;
+  }
+  
+  .logo {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #ffffff; /* Static white color */
+    z-index: 2;
+  }
+  
+  .image-section h1 {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.3;
+    z-index: 2;
+  }
+  
+  .image-section p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    margin-top: 1rem;
+    text-align: center;
+    opacity: 0.9;
+    z-index: 2;
+  }
+  
+  .illustration {
+    margin-top: 2rem;
+    max-width: 200px;
+    z-index: 2;
+  }
+  
+  .form-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .form-container {
+    width: 100%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .form-container h2 {
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #111827;
+  }
+  
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #374151;
+  }
+  
+  .optional {
+    font-weight: 400;
+    color: #6b7280;
+    font-size: 0.875rem;
+  }
+  
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    outline: none;
+  }
+  
+  input.error,
+  select.error,
+  textarea.error {
+    border-color: #ef4444;
+  }
+  
+  input.success,
+  select.success,
+  textarea.success {
+    border-color: #10b981;
+  }
+  
+  .hint {
+    display: block;
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+  }
+  
+  .error-message {
+    display: block;
+    font-size: 0.75rem;
+    color: #ef4444;
+    margin-top: 0.25rem;
+    min-height: 1rem;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+  }
+  
+  .btn-primary {
+    background-color: #4f46e5;
+    color: #fff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #4338ca;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+  }
+  
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+  
+  .google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: #fff;
+    color: #111827;
+    border: 1px solid #d1d5db;
+    margin-bottom: 1rem;
+  }
+  
+  .google-btn:hover {
+    background-color: #f3f4f6;
+    transform: translateY(-2px);
+  }
+  
+  .google-btn:active {
+    transform: translateY(0);
+  }
+  
+  .divider {
+    text-align: center;
+    margin: 1.5rem 0;
+    position: relative;
+    color: #6b7280;
+  }
+  
+  .divider::before,
+  .divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background: #e5e7eb;
+  }
+  
+  .divider::before {
+    left: 0;
+  }
+  
+  .divider::after {
+    right: 0;
+  }
+  
+  .divider span {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 0 0.5rem;
+  }
+  
+  .footer-text {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .footer-text a {
+    color: #4f46e5;
+    text-decoration: none;
+  }
+  
+  .footer-text a:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+  
+    .image-section {
+      flex: none;
+      min-height: 300px;
+      padding: 2rem;
+    }
+  
+    .form-section {
+      padding: 1rem;
+    }
+  
+    .form-container {
+      padding: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .image-section h1 {
+      font-size: 1.5rem;
+    }
+  
+    .image-section p {
+      font-size: 0.875rem;
+    }
+  
+    .form-container {
+      padding: 1rem;
+    }
+  
+    .btn {
+      padding: 0.65rem;
+    }
+  }
+  </style>
 </head>
+
 <body>
-  <h2>Register as User</h2>
-  <form action="/register" method="POST">
-    <input type="text" name="name" placeholder="Name" required><br>
-    <input type="email" name="email" placeholder="Email" required><br>
-    <input type="password" name="password" placeholder="Password" required><br>
-    <select name="role">
-      <option value="student">Student</option>
-      <option value="mentor">Mentor</option>
-    </select><br>
-    <input type="text" name="expertise" placeholder="Expertise (if mentor)"><br>
-    <textarea name="bio" placeholder="Bio"></textarea><br>
-    <button type="submit">Register</button>
-  </form>
-</body>
-</html>
+  <main class="container">
+    <section class="image-section" aria-label="Welcome message">
+      <div class="logo">
+        <svg viewBox="0 0 280 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Nest arcs -->
+          <path id="arc1" class="arc" d="M60 80 Q140 20 220 80" stroke-width="5" fill="none"/>
+          <path id="arc2" class="arc" d="M80 80 Q140 40 200 80" stroke-width="5" fill="none"/>
+          <path id="arc3" class="arc" d="M100 80 Q140 60 180 80" stroke-width="5" fill="none"/>
+          <!-- Text -->
+          <text id="ideanest-text" x="140" y="110" text-anchor="middle">IdeaNest</text>
+        </svg>
+      </div>
+      <h1>Empower Educational Innovation</h1>
+      <p>Be part of a platform that brings student ideas to life.</p>
+      <div class="illustration" aria-hidden="true">
+        <!-- Placeholder SVG for illustration -->
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="80" fill="url(#grad1)" opacity="0.3"/>
+          <path d="M60 120 L100 80 L140 120" stroke="#06B6D4" stroke-width="8" stroke-linecap="round"/>
+          <path d="M100 80 V140" stroke="#4F46E5" stroke-width="8" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#06B6D4;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </section>
+    <section class="form-section" aria-label="Sign up form">
+      <div class="form-container">
+        <h2>Sign Up</h2>
+        <form id="signup-form" aria-labelledby="form-title">
+          <h3 id="form-title" class="visually-hidden">Sign Up</h3>
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required aria-required="true" autocomplete="name" />
+            <span class="error-message" id="name-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required aria-required="true" autocomplete="email" />
+            <span class="error-message" id="email-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required aria-required="true" autocomplete="new-password" minlength="8" />
+            <span class="error-message" id="password-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm-password" required aria-required="true" autocomplete="new-password" minlength="8" />
+            <span class="error-message" id="confirm-password-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="role">Role</label>
+            <select id="role" name="role" required aria-required="true">
+              <option value="" disabled selected>Select a role</option>
+              <option value="student">Student</option>
+              <option value="mentor">Mentor</option>
+              <option value="donor">Donor</option>
+              <option value="educator">Educator</option>
+              <option value="other">Other</option>
+            </select>
+            <span class="error-message" id="role-error"></span>
+          </div>
+          <button class="btn btn-primary" type="submit">Sign Up</button>
+          <div class="divider" aria-hidden="true"><span>OR</span></div>
+          <button class="btn google-btn" type="button" aria-label="Sign up with Google">
+            <svg class="google-icon" viewBox="0 0 24 24" width="20" height="20">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-1.02.68-2.33 1.09-3.71 1.09-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C4.01 20.52 7.62 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.62 1 4.01 3.48 2.18 7.07l3.66 2.84c.87
