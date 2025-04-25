@@ -1,0 +1,23 @@
+<!-- views/register.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+</head>
+<body>
+  <h2>Register as User</h2>
+  <form action="/register" method="POST">
+    <input type="text" name="name" placeholder="Name" required><br>
+    <input type="email" name="email" placeholder="Email" required><br>
+    <input type="password" name="password" placeholder="Password" required><br>
+    <select name="role">
+      <option value="student">Student</option>
+      <option value="mentor">Mentor</option>
+    </select><br>
+    <input type="text" name="expertise" placeholder="Expertise (if mentor)"><br>
+    <textarea name="bio" placeholder="Bio"></textarea><br>
+    <button type="submit">Register</button>
+  </form>
+</body>
+</html>

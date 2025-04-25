@@ -1,0 +1,19 @@
+<!-- views/submit-idea.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Submit Idea</title>
+</head>
+<body>
+  <h2>Submit Idea</h2>
+  <form action="/ideas" method="POST">
+    <input type="text" name="title" placeholder="Title" required><br>
+    <textarea name="description" placeholder="Description" required></textarea><br>
+    <input type="text" name="student_id" placeholder="Student ID" required><br>
+    <input type="text" name="sdg_tag_id" placeholder="SDG Tag ID"><br>
+    <input type="text" name="needs" placeholder="Needs"><br>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>

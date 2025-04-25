@@ -1,0 +1,21 @@
+<!-- views/ideas.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Submitted Ideas</title>
+</head>
+<body>
+  <h2>All Ideas</h2>
+  <ul>
+    <% ideas.forEach(idea => { %>
+      <li>
+        <strong><%= idea.title %></strong><br>
+        <%= idea.description %><br>
+      </li>
+    <% }) %>
+  </ul>
+  <a href="/submit-idea">Submit New Idea</a>
+</body>
+</html>
+
