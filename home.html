@@ -1,184 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="IdeaNest - A platform to fund student ideas and foster educational innovation." />
   <title>IdeaNest | Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
-    body {
-      background-color: #F9FAFB;
-      color: #111827;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background-color: white;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #4F46E5;
-    }
-
-    nav a {
-      margin-left: 2rem;
-      text-decoration: none;
-      color: #111827;
-      font-weight: 500;
-    }
-
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 4rem 2rem;
-      background: linear-gradient(135deg, #4F46E5, #06B6D4);
-      color: white;
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-
-    .hero p {
-      max-width: 600px;
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-    }
-
-    .hero button {
-      background-color: white;
-      color: #4F46E5;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 0.5rem;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .hero button:hover {
-      background-color: #f0f0f0;
-    }
-
-    .section {
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-
-    .section h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: #4F46E5;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-
-    .card {
-      background-color: white;
-      padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    }
-
-    footer {
-      background-color: #1f2937;
-      color: white;
-      padding: 2rem;
-      text-align: center;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2rem;
-      }
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="home.css" />
 </head>
-
 <body>
-  <header>
+  <header class="header">
     <div class="logo">IdeaNest</div>
     <nav>
-      <a href="#">Home</a>
+      <a href="#" class="active">Home</a>
       <a href="#how">How It Works</a>
       <a href="#join">Join</a>
-      <a href="#login">Login</a>
+      <a href="login.html">Login</a>
     </nav>
   </header>
-
-  <section class="hero">
-    <h1>Empowering Student Innovation</h1>
-    <p>Connect with mentors, get funded, and bring your idea to life through IdeaNest.</p>
-    <button>Get Started</button>
-  </section>
-
-  <section class="section" id="how">
-    <h2>How It Works</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>Submit Your Idea</h3>
-        <p>Tell us what you're working on and how it will make an impact.</p>
+  <main>
+    <section class="hero" aria-label="Hero section">
+      <div class="hero-image">
+        <h1>Empowering Student Innovation</h1>
+        <p>Connect with mentors, get funded, and bring your idea to life through IdeaNest.</p>
+        <button class="btn btn-primary">Get Started</button>
+        <div class="illustration" aria-hidden="true">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="80" fill="url(#grad1)" opacity="0.3"/>
+            <path d="M60 120 L100 80 L140 120" stroke="#06B6D4" stroke-width="8" stroke-linecap="round"/>
+            <path d="M100 80 V140" stroke="#4F46E5" stroke-width="8" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#06B6D4;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
       </div>
-      <div class="card">
-        <h3>Find Support</h3>
-        <p>Get matched with mentors, donors, and industry experts.</p>
+      <div class="hero-content">
+        <h2>Why IdeaNest?</h2>
+        <p>Join a vibrant community of students, mentors, donors, and educators dedicated to transforming education through innovation.</p>
+        <a href="signup.html" class="btn btn-secondary">Join Now</a>
       </div>
-      <div class="card">
-        <h3>Grow & Launch</h3>
-        <p>Receive funding and mentorship to bring your vision to life.</p>
+    </section>
+    <section class="section" id="how">
+      <h2>How It Works</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Submit Your Idea</h3>
+          <p>Tell us what you're working on and how it will make an impact.</p>
+        </div>
+        <div class="card">
+          <h3>Find Support</h3>
+          <p>Get matched with mentors, donors, and industry experts.</p>
+        </div>
+        <div class="card">
+          <h3>Grow & Launch</h3>
+          <p>Receive funding and mentorship to bring your vision to life.</p>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <section class="section" id="join">
-    <h2>Who Can Join?</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>Students</h3>
-        <p>Submit ideas, get mentored, and secure funding.</p>
+    </section>
+    <section class="section" id="join">
+      <h2>Who Can Join?</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Students</h3>
+          <p>Submit ideas, get mentored, and secure funding.</p>
+        </div>
+        <div class="card">
+          <h3>Mentors</h3>
+          <p>Guide student innovators and share your expertise.</p>
+        </div>
+        <div class="card">
+          <h3>Donors</h3>
+          <p>Fund promising ideas and invest in the future.</p>
+        </div>
+        <div class="card">
+          <h3>Educators</h3>
+          <p>Support students through knowledge and experience.</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>Mentors</h3>
-        <p>Guide student innovators and share your expertise.</p>
-      </div>
-      <div class="card">
-        <h3>Donors</h3>
-        <p>Fund promising ideas and invest in the future.</p>
-      </div>
-      <div class="card">
-        <h3>Educators</h3>
-        <p>Support students through knowledge and experience.</p>
-      </div>
-    </div>
-  </section>
-
+    </section>
+  </main>
   <footer>
-    &copy; 2025 IdeaNest. All rights reserved. | Contact us | Privacy Policy
+    © 2025 IdeaNest. All rights reserved. | <a href="/contact">Contact us</a> | <a href="/privacy">Privacy Policy</a>
   </footer>
 </body>
-
 </html>
